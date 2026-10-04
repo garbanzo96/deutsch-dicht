@@ -22,7 +22,7 @@ cd deutsch-dicht
 python3 scripts/serve.py --port 8765
 ```
 
-Abre http://127.0.0.1:8765/. En macOS también puedes abrir `Iniciar.command`. El servidor escucha solamente en 127.0.0.1. Ctrl+C lo detiene. Conserva navegador, dirección y puerto para mantener el mismo progreso. Los archivos clásicos también permiten abrir index.html donde el navegador admita file://; HTTP local es la opción recomendada.
+Abre http://127.0.0.1:8765/. En macOS también puedes ejecutar `bash Iniciar.command`; para abrirlo con doble clic, primero ejecuta `chmod +x Iniciar.command`. El servidor escucha solamente en 127.0.0.1. Ctrl+C lo detiene. Conserva navegador, dirección y puerto para mantener el mismo progreso. Los archivos clásicos también permiten abrir index.html donde el navegador admita file://; HTTP local es la opción recomendada.
 
 ## Desarrollar
 
