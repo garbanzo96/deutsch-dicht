@@ -214,7 +214,7 @@
 
   /* Acciones de práctica */
   const curUnit = () => App.C.unitById.get(App.route().id);
-  const curEx = () => { const u = curUnit(); if (!u) return null; const st = P(u.id); return { u, st, ex: u.exercises[st.i] }; };
+  const curEx = () => { const u = curUnit(); if (!u || !u.exercises.length) return null; const st = P(u.id); if (!(st.i >= 0 && st.i < u.exercises.length)) st.i = Math.max(0, Math.min(u.exercises.length - 1, st.i | 0)); return { u, st, ex: u.exercises[st.i] }; };
   function syncInputs(ex, st) { const v = App.Exercise.readInputs(ex, main.querySelector('.ex-card') || main); if (v !== undefined) st.vals[ex.id] = v; }
   function check() {
     const c = curEx(); if (!c) return; const { ex, st } = c;

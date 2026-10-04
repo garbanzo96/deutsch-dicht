@@ -138,7 +138,7 @@
     return `<article class="concept"><div class="cterm" lang="de">${mark(b.de)}</div><p>${esc(loc(b.t))}</p>${b.ex ? `<div class="ex">${b.ex.map(x => sayBtn(x)).join('')}</div>` : ''}</article>`;
   }
   function tableHTML(columns, rows, opts = {}) {
-    return `<div class="tbl-wrap"><table class="tbl"><thead><tr>${columns.map(c => `<th scope="col">${esc(loc(c))}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => i === 0 && opts.rowHead !== false ? `<th scope="row">${cell(c)}</th>` : `<td class="${typeof c === 'string' ? 'de' : ''}">${cell(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    return `<div class="tbl-wrap"><table class="tbl"><thead><tr>${columns.map(c => `<th scope="col">${typeof c === 'string' ? mark(c) : esc(loc(c))}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => i === 0 && opts.rowHead !== false ? `<th scope="row">${cell(c)}</th>` : `<td class="${typeof c === 'string' ? 'de' : ''}">${cell(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   }
   const BLOCKS = {
     table: b => `<section class="blk">${head(b)}${tableHTML(b.c, b.r, b)}${note(b)}</section>`,

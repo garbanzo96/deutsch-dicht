@@ -124,8 +124,43 @@
     const other = p.closest('[lang]');
     return !other || other.getAttribute('lang') === 'de' || de.contains(other) === false;
   }
+  /* Citas alemanas dentro de texto en español/inglés: «Den Kaffee trinkt Lena.», „…“.
+     Se marcan como alemán solo si al menos el 60 % de sus palabras está en el índice morfológico. */
+  const QUOTE = /([«„])([^«»„“”]{2,160})([»“])/g;
+  const known = w => (App.C.index.index.get(App.M.key(w)) || []).length > 0;
+  function isGerman(text) {
+    if (/^\s*[¨\-–+]/.test(text)) return false;          // notación (¨-er, -en)
+    const words = text.match(/[\p{L}][\p{L}\p{M}’'-]*/gu) || [];
+    if (!words.length) return false;
+    const hits = words.filter(known).length;
+    return hits / words.length >= 0.6 && (words.length > 1 || /[äöüßÄÖÜ]|^[A-ZÄÖÜ]/.test(words[0]) || hits === 1);
+  }
+  function markQuotes(root) {
+    const nodes = [];
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => {
+      const p = n.parentElement;
+      if (!p || !/[«„]/.test(n.nodeValue) || p.closest(SKIP) || p.closest(CONTAINER) || p.closest('[lang]')?.getAttribute('lang') === 'de') return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    } });
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) nodes.push(n);
+    for (const node of nodes) {
+      const s = node.nodeValue; let last = 0, frag = null;
+      for (const m of s.matchAll(QUOTE)) {
+        if (!isGerman(m[2])) continue;
+        frag = frag || document.createDocumentFragment();
+        frag.appendChild(document.createTextNode(s.slice(last, m.index) + m[1]));
+        const sp = document.createElement('span'); sp.setAttribute('lang', 'de'); sp.className = 'q-de'; sp.textContent = m[2];
+        frag.appendChild(sp); frag.appendChild(document.createTextNode(m[3]));
+        last = m.index + m[0].length;
+      }
+      if (!frag) continue;
+      if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    }
+  }
   App.linkify = function (root) {
     if (!root || !App.C) return;
+    markQuotes(root);
     const nodes = [];
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => eligible(n) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
     for (let n = walker.nextNode(); n; n = walker.nextNode()) nodes.push(n);

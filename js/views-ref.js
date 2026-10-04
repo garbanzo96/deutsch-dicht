@@ -139,16 +139,22 @@
   }
   function occurrences(e) {
     App.occ = App.occ || new Map();
+    if (!App.occIndex) {            // índice único: entrada → párrafos donde es el mejor análisis
+      App.occIndex = new Map();
+      for (const r of App.C.readings) r.p.forEach((_, i) => {
+        for (const list of App.C.analyzeParagraph(r, i).analysis) {
+          const id = list?.[0]?.id; if (!id) continue;
+          const arr = App.occIndex.get(id) || App.occIndex.set(id, []).get(id);
+          if (!arr.some(x => x.r === r)) arr.push({ r, i });
+        }
+      });
+    }
     if (!App.occ.has(e.id)) {
       const hits = [];
-      for (const r of App.C.readings) {
-        for (let i = 0; i < r.p.length && hits.length < 8; i++) {
-          const a = App.C.analyzeParagraph(r, i);
-          if (a.analysis.some(list => list?.[0]?.id === e.id)) {
-            const s = App.M.sentences(r.p[i][0]).find(s => App.M.analyze(s, App.C.index).analysis.some(l => l?.[0]?.id === e.id));
-            hits.push({ r, s: s || r.p[i][0] }); break;
-          }
-        }
+      for (const { r, i } of App.occIndex.get(e.id) || []) {
+        if (hits.length >= 8) break;
+        const s = App.M.sentences(r.p[i][0]).find(s => App.M.analyze(s, App.C.index).analysis.some(l => l?.[0]?.id === e.id));
+        hits.push({ r, s: s || r.p[i][0] });
       }
       App.occ.set(e.id, hits);
     }
