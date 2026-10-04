@@ -1,6 +1,6 @@
 # Diccionario bilingüe de referencia y frecuencia
 
-Importación realizada el **2 de octubre de 2026**. El repertorio didáctico original de 252 entradas conserva sus identificadores en `data/vocabulary.js`. `data/dictionary.js` añade una referencia amplia, independiente del calendario de lecciones; consultar una entrada no equivale a introducirla automáticamente en el curso.
+Importación realizada el **2 de octubre de 2026**. En la v3 el léxico didáctico del curso (2 572 entradas) vive en `data/units/uNN.js`; el repertorio de la v2 se conserva en `legacy/`. `data/dictionary.js` añade una referencia amplia, independiente del calendario de lecciones; consultar una entrada no equivale a introducirla automáticamente en el curso.
 
 ## Alcance verificable
 

@@ -1,4 +1,23 @@
-# Publicación abierta — 3 de octubre de 2026
+# Publicación abierta
+
+Repositorio: https://github.com/garbanzo96/deutsch-dicht
+App: https://garbanzo96.github.io/deutsch-dicht/
+
+## Actualización v3.1 — 4 de octubre de 2026
+
+Cambios respecto de la instantánea del 3 de octubre:
+
+- **Consulta universal de palabras**: cualquier palabra alemana de la app (y las citas alemanas dentro de explicaciones en español) abre el panel con lema, tipo, significado, formas y audio. Se excluyen enlaces, botones de respuesta y el anverso de las tarjetas sin revelar.
+- **Evaluación**: puntuación, guiones y apóstrofos nunca son obligatorios («Danke - Bitte» = «Danke! – Bitte!»; *geht’s* = *gehts* = *geht es*); no se exige mayúscula/minúscula tras «–».
+- **Audio**: sin selector de voces; se usa automáticamente la mejor voz alemana. Guiones y barras se leen como pausas; los nombres de las letras usan grafía fonética.
+- **Diccionario**: paginación numerada, selector de página con el rango de palabras, orden A–Z con barra de letras; fichas mucho más rápidas (índice de apariciones único).
+- **Pantallas pequeñas**: sin desborde horizontal a 390 px; encabezados de tabla con marcas de género corregidos; corrección de un fallo al montar la práctica.
+- **Citas**: tesis XI de Marx (versión de Engels, 1888) y frase de Kant de 1788 corregidas para que sean literales; párrafo de Kant sobre la Ilustración completado.
+- **Pruebas**: 20 pruebas nuevas (núcleo, analizador, corpus) además de las 4 de publicación.
+
+Se mantienen las adaptaciones públicas: manifiesto de audio vacío (voz del navegador), enlace a créditos, texto de progreso sin dirección local fija, licencias y CI. Validación de la copia pública antes de subir: `check-content` 0 errores y `node --test tests/*.test.js` 24/24.
+
+## Publicación inicial — 3 de octubre de 2026
 
 Repositorio: https://github.com/garbanzo96/deutsch-dicht
 App: https://garbanzo96.github.io/deutsch-dicht/

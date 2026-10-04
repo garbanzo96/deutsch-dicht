@@ -1,6 +1,8 @@
 # Fuentes y criterios de la referencia gramatical
 
-Fecha de contraste: 2 de octubre de 2026. Archivo: `data/grammar.js`.
+Fecha de contraste: 2 de octubre de 2026 (v2); ampliada el 3–4 de octubre de 2026 (v3). Archivos: `data/grammar/NN-*.js` (87 temas en 11 capítulos) y las lecciones de `data/units/`.
+
+Nota v3: las fuentes siguientes se usaron para contrastar la versión 2 y siguen siendo la referencia de las tablas equivalentes de la v3 (declinación, pronombres, preposiciones, Ersatzinfinitiv, Konjunktiv, pasiva). Los temas nuevos de la v3 (estilo nominal, Funktionsverbgefüge, campos, cautela académica, terminología) son material didáctico original redactado a partir de la descripción gramatical estándar; no reproducen texto de las fuentes.
 
 La referencia contiene 32 tablas, 282 filas y 65 ejemplos bilingües. Está redactada como material didáctico original en español; las formas flexivas y reglas se contrastaron con fuentes primarias. Los ejemplos son construidos para esta app, no fragmentos literarios ni citas de los corpus de las fuentes. La referencia cubre el núcleo A1–B2 necesario para la ruta y para iniciar lectura avanzada; no pretende enumerar todas las construcciones, variaciones ni acepciones del alemán.
 

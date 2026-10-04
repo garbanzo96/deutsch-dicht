@@ -1,25 +1,23 @@
-# Arquitectura pedagógica — Deutsch Dicht
+# Fundamentos pedagógicos
 
-## Objetivo y perfil
-Aprender alemán con explicaciones breves en español y comparaciones puntuales con inglés, griego y latín. La alta capacidad permite densidad conceptual y rutas flexibles; no elimina la necesidad de recuperación activa, exposición y repaso. El nivel de cada unidad es orientativo, no una certificación MCER.
+Cada decisión didáctica se apoya en investigación sobre adquisición de segundas lenguas y memoria. Referencias principales entre paréntesis.
 
-## Secuencia de aprendizaje
-Cada unidad conecta un objetivo comunicativo, una regla explícita, vocabulario, ejemplos bilingües, un texto y práctica de recuperación. Ciclo: comprender → observar contraste → producir → corregir → recuperar después. Progresión: A1 (estructura V2, presente, género y casos básicos), A2 (dativo, movimiento/posición, perfecto, subordinación), B1 (relativas, declinación adjetival, pasiva, hipótesis), B2 (conectores, nominalización, discurso indirecto), C1 (argumentación y lectura filosófica).
+| Principio | Cómo se aplica |
+| --- | --- |
+| **Instrucción explícita** y práctica deliberada (Norris y Ortega 2000; Spada y Tomita 2010; DeKeyser, teoría de adquisición de destrezas) | Cada unidad parte de la regla completa con tablas y diagramas de campos; luego la práctica pasa de conocimiento declarativo a procedimental. |
+| **Tres fases**: Erkennen · Üben · Anwenden | Primero reconocimiento con input estructurado (VanPatten, *processing instruction*), luego producción controlada (huecos, orden, transformación) y por último producción libre y dictado. |
+| **Recuperación activa** (Roediger y Karpicke 2006) | Todo se practica recuperando antes de ver la respuesta; ver la solución no cuenta para el dominio durante 10 minutos. |
+| **Repaso espaciado** (Ebbinghaus 1885; Cepeda et al. 2006; Kim y Webb 2022) | FSRS-6 programa cada tarjeta para retención objetivo del 90 %. Los ejercicios resueltos sin ayuda se convierten en tarjetas de gramática. |
+| **Carga sostenible y progresión continua** | El número de palabras nuevas sube solo cuando la retención real de la semana lo permite (≥ 86 %) y baja si cae bajo 80 % o se acumulan repasos. Sin decisiones manuales. |
+| **Del reconocimiento a la producción** (Nation 2013) | La tarjeta ES → DE se desbloquea cuando la palabra se reconoce con estabilidad ≥ 3 días; como máximo la mitad de la cuota diaria. |
+| **Cobertura léxica de lectura** (Hu y Nation 2000; Schmitt, Jiang y Grabe 2011) | Las lecturas de unidad se escriben para ≥ 90–98 % de léxico conocido al llegar a ellas; todo lo demás está glosado (100 % apoyado, verificado automáticamente). |
+| **Frecuencia** | Dentro de cada unidad, el vocabulario entra al mazo por frecuencia de uso (OpenSubtitles). La ampliación A1–B1 completa el vocabulario de referencia del nivel. |
+| **Secuencia de procesamiento** (Pienemann, *Processability Theory*) | Orden canónico → paréntesis verbal → inversión V2 → verbo final en subordinadas; casos Nom → Akk → Dat → Gen. |
+| **Bloques léxicos** (Redemittel; Boers y Lindstromberg 2009) | Cada unidad trae expresiones completas con audio para usar antes de analizarlas. |
+| **Contraste con la L1** | Notas «Desde el español» en cada unidad y errores típicos de hispanohablantes (falsos amigos, aspecto, uso de «se»). |
+| **Audio con cada forma** | Todo ejemplo, frase de lectura y palabra tiene pronunciación local; la consulta de cualquier palabra incluye su audio. |
+| **Atención a la forma en contexto** | Las lecturas de la serie «Leipzig» (y la biblioteca) concentran la estructura de la unidad («Fíjate en…») dentro de una historia continua con personajes recurrentes. |
 
-## Densidad sin omisiones
-Un término alemán siempre lleva significado o explicación mínima en español. Los sustantivos incluyen artículo y plural; los verbos irregulares, formas principales; las preposiciones, régimen de caso. Una regla comprimida conserva condiciones y excepciones importantes. Las tablas sirven como consulta y se enlazan desde las unidades.
+## Codificación visual
 
-## Ritmo y transferencia
-Sesión sugerida de 15–25 minutos: repaso vencido → una unidad → lectura breve → producción. Activación gradual por nivel y unidad; la biblioteca permite explorar cualquier contenido. Una unidad se domina con al menos 80 % de ejercicios resueltos sin ver la solución. El inglés ayuda con cognados y auxiliares; latín/griego ayudan con función de caso. Evitar transferencias falsas: género, orden V2 y verbo final, aspecto y declinación alemana.
-
-## Evaluación y memoria
-Los ejercicios distinguen respuesta incorrecta, respuesta aceptada y solución consultada. Las variantes de traducción listadas se aceptan; otras formulaciones pueden ser válidas y requieren comparación humana. Se permite revisar la solución sin obtener dominio. Repaso con calendario adaptativo por tarjeta: fallo reaparece en la sesión y vence pronto; acierto aumenta intervalo. Mezcla orientativa de cuatro repasos por cada nuevo ítem cuando hay suficientes repasos. No se presenta como Anki/FSRS ni como predicción calibrada de memoria.
-
-## Lectura
-Textos A1–C1 con traducción visible bajo demanda, glosas y preguntas. Cotidianos, ciencia y filosofía. La mayoría son textos didácticos originales, claramente marcados. Las citas históricas se limitan a fuentes documentadas y permisos verificados; las traducciones españolas son propias. Las ideas contemporáneas se explican con textos originales, sin imitar pasajes de obras protegidas.
-
-## Extensión
-Primero calidad de unidades y relaciones; después volumen. Incorporar audio humano/licenciado y evaluación abierta en iteraciones posteriores. El primer corpus ofrece una ruta introductoria hasta lectura avanzada, no todo el contenido necesario para alcanzar C1.
-
-## Fundamentación
-La recuperación activa y el espaciado se apoyan en resultados generales de memoria; las proporciones, intervalos y umbral de esta app son decisiones de producto, no parámetros óptimos demostrados para este usuario. Fuentes: [Roediger y Karpicke (2006), Test-Enhanced Learning](https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.2006.01693.x/) y [Cepeda et al. (2006), Distributed practice in verbal recall tasks](https://pubmed.ncbi.nlm.nih.gov/16719566/). La densidad y comparación entre lenguas son adaptaciones al perfil solicitado, no una intervención validada en personas con un CI determinado.
+Género: azul *der*, rojo *die*, verde *das*, ámbar plural. Caso: naranja acusativo, violeta dativo, turquesa genitivo. Los diagramas de campos (Vorfeld, paréntesis, Mittelfeld, Nachfeld) muestran la posición del verbo en todas las estructuras.

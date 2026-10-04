@@ -1,46 +1,38 @@
-# Esquema de datos y convenciones
+# Esquema de datos (v3.1)
 
-Scripts clásicos asignan arrays a `window.DeutschData`; orden de carga: gramática, vocabulario, lecturas, unidades, relaciones, motor, interfaz. No usar `fetch` ni importaciones ESM sin cambiar la compatibilidad `file://`.
+## Léxico (`DD.lexicon.push({ unit, ext?, words: [...] })`)
+
+Cada entrada es una tupla; el último elemento opcional es un objeto de opciones.
+
+| Tipo | Tupla |
+| --- | --- |
+| Sustantivo | `['n', 'der Tisch', 'Tische', es, en, opts]` · plural `'—'` = sin plural; `opts.n: 1` declinación n; `opts.gen` genitivo irregular; `opts.adj: 1` adjetivo sustantivado; `opts.plOnly` |
+| Verbo | `['v', 'an|rufen', 'ruft an', 'rief an', 'hat angerufen', es, en, opts]` · `|` marca el prefijo separable; `sich` al inicio para reflexivos; `opts.rek` régimen |
+| Adjetivo | `['a', 'alt', cmp, sup, es, en, opts]` · `null` = comparación regular; `'—'` = no se compara; `opts.stem`, `opts.decl: 0` invariable |
+| Otros | `['adv' | 'prep' | 'conj' | 'pron' | 'part' | 'interj' | 'num' | 'phr' | 'name', lema, es, en, opts]` · `prep: opts.case` (`A`, `D`, `G`, `AD`…); `conj: opts.type` (`sub`, `coord`, `adv`, `two`) |
+
+Opciones comunes: `id` (si no, se deriva del lema), `homonym: 1` (lemas iguales con distinto sentido), `forms: { forma: etiqueta }` (formas adicionales), `note: [es, en]`, `ex: [de, es, en]`, `deck: 0` (no entra al mazo). Un bloque con `ext: true` es vocabulario básico de ampliación: entra al mazo igual, pero se muestra plegado en la lección.
+
+## Unidad (`DD.unit('uNN', {...})`)
+
+`minutes`, `goals[]` (bilingües), `grammar[]` (IDs de temas), `lesson[]` (bloques), `chunks[]` y `examples[]` (`[de, es, en]`), `errors[]` (`[incorrecto, correcto, {es,en}]`), `reading` (ID), `exercises[]`, `summary[]`, `more[]` (opcional; se completa con lecturas de biblioteca `after`).
+
+Bloques: `concept {de, t}`, `table {h, c, r, n}`, `slots {h, c, v, r, n}` (modelo de campos; `v` = columnas verbales), `pairs {h, r:[a, b, glosa?]}`, `formula {f, ex}`, `list {h, cols, r:[de, sig], audio?}`, `letters`, `sounds`, `minimal`, `note {tone: tip|warn|l1, t}`, `examples {r}`, `ref {id, table}` (incrusta una tabla de la gramática). Marcado en celdas alemanas: `[resaltado]`, `{m der}` `{f die}` `{n das}` `{p die}` (género), `{N …}` `{A …}` `{D …}` `{G …}` (caso), `{V …}` (verbo).
+
+Ejercicios (ID automático `uNN-MM`, `ph` 1–3): `choice {q, o, a}`, `rf {q, a}`, `match {pairs}`, `gap {q con ___, a, alt}`, `order {w, a}`, `transform {p, q, a, alt}`, `write {s, a, alt}`, `listen {a}`. Todos llevan `x` (explicación bilingüe).
+
+## Lectura (`DD.readings.push({...})`)
+
+`id`, `kind: 'unit' | 'library'`, `unit` o `after`, `level`, `format: 'dialog' | 'verse'?`, `de/es/en` (títulos), `genre`, `intro`, `focus`, `source {type: 'original' | 'public-domain', author, work, year, note}`, `p: [[de, es, en, hablante?]]`, `gloss: [[palabra, {es,en}]]`, `lemmas?` (forzar lema), `q[]` (preguntas `choice`/`rf`).
 
 ## Gramática
-`{id,title,deTitle,level,summary,columns:string[],rows:string[][],notes:string[],examples:{de,es}[]}`. Cada fila tiene tantas celdas como columnas. Paradigmas completos del tema, con condiciones y excepciones en notas. `deTitle`: término alemán; `title`: significado español.
 
-## Vocabulario
-`{id,de,es,category,level,gender?,plural?,forms?,note?,example:{de,es}}`.
-Categorías: verbos, sustantivos, adjetivos, adverbios, conectores, preposiciones, pronombres, partículas. Los determinantes posesivos/demostrativos se agrupan con pronombres y `kein` con negación; la nota explica la función. Sustantivos: artículo + lema, género explicado y plural completo; indicar falta de plural habitual sin negar usos especializados. Verbos: tercera persona del presente, Präteritum y Perfekt con auxiliar, más régimen y separabilidad cuando importan. Niveles orientativos.
+`DD.grammarChapters` (11 capítulos) y `DD.grammarTopic(capítulo, [temas])`. Tema: `{ id, level, de, es, en, summary:{es,en}, blocks:[...], examples:[[de, es, en]] }`.
 
-## Unidades
-`{id,order,title,level,goal,minutes,grammarIds,vocabIds,readingId,concepts:{de,es,contrast?}[],examples:{de,es}[],exercises:Exercise[]}`. `connections.js` aplica el mapa editorial `vocabByUnit` después de cargar unidades. Todos los 252 términos pertenecen al menos a una unidad. Visitar una unidad activa su repertorio; añadir manualmente también.
+## Estado del alumno (`localStorage['deutsch-dicht.v3']`, `schemaVersion: 3`)
 
-`Exercise`: `{id,type,prompt,answer?,accepted?,options?,correct?,tokens?,explanation,hint?}`.
-- `type`: translation, cloze, case, conjugation, word-order, comprehension.
-- Con opciones: `correct` es índice entero desde 0.
-- Respuesta escrita: `answer` canónica, `accepted` variantes adicionales.
-- Orden: `tokens` desordenados, `answer` conserva exactamente el multiconjunto de palabras, con puntuación normalizable. Tokens duplicados se distinguen por índice.
-- No incluir respuestas igualmente válidas como distractores. Para traducción pedir una estructura específica cuando sea necesaria y enumerar alternativas comunes.
+`units {id: {visited, tab}}`, `exercises {id: {correct, assisted, tries, at, helpedAt?, everCorrect?}}`, `cards {clave: {st, s, d, step, reps, lapses, due, last, ivl}}` con claves `w:<id>:r`, `w:<id>:p`, `g:<ejercicio>`; `log [[t, clave, nota, estadoPrevio, ms]]` (≤ 12 000), `readings {id: {read, score}}`, `deck {added, suspended}`, `pace {day, quota, reason, history}`, `daily {día: {new, reviews, exercises, again, ms, production}}`, `settings {language, theme, autoAudio, slowAudio}`. `validateState` filtra IDs desconocidos y valores fuera de rango al importar.
 
-## Lecturas
-`{id,title,level,kind,source:{type,label,url?,licenseNote},paragraphs:{de,es}[],glossary:{de,es}[],questions:{prompt,options,answer,explanation}[]}`.
-`source.type`: original, public-domain o paraphrase. `answer`: índice desde 0. Las traducciones españolas del corpus son propias. Conservar fuentes históricas/edición/criterio territorial; no insertar traducciones modernas protegidas. `url` solo se enlaza si usa HTTPS.
+## Audio (`data/audio-manifest.js`)
 
-## Estado v1
-Clave: `deutsch-dicht.v1`. `{schemaVersion:1,activeUnit,visited:string[],exercises:{[exerciseId]:{correct,assisted,tries,at,helpedAt?}},cards:{[vocabId:direction]:Card},readings:{[readingId]:true},added:string[],daily:{[YYYY-MM-DD]:{new,reviews,exercises}},settings:{newLimit,direction},reviewCount}`.
-`Card`: `{interval,ease,reps,lapses,seen,due,last,retryAfter?}`. Intervalo en días; fechas en milisegundos Unix; `retryAfter` es contador global de respuestas. Direcciones: `de-es` y `es-de`. Los días se calculan en hora local del navegador. Importar filtra IDs desconocidos/campos inválidos; incompatible schemaVersion se rechaza. `helpedAt` conserva la fecha de la última solución consultada; reintentar no prolonga el plazo de ayuda. Los respaldos antiguos sin ese campo siguen admitidos, usando `at` en ejercicios asistidos. No se guardan respuestas libres ni datos personales.
-
-## Convenciones
-IDs ASCII, estables y únicos; unit-01…unit-20; u01-e1…; noun-haus; cases; reading-a1-1. UTF-8; alemán estándar y traducción natural en español. Explicar todo tecnicismo alemán cuando aparece por primera vez. No reemplazar `ä` por `a`, `ö` por `o`, `ü` por `u` ni `ß` por `ss` como equivalencia del evaluador. UI semántica, cadenas escapadas y ninguna dependencia remota.
-
-## Adiciones v2 (compatibles con schemaVersion 1)
-
-- `settings.language`: `es|en`; `theme`: `light|dark`; `voice`: nombre de voz o vacío. Valores antiguos reciben `es/light/automática`.
-- `cards` admite `id:de-es`, `id:es-de`, `id:de-en`, `id:en-de`. `settings.direction` conserva los dos valores antiguos como orientación; la interfaz los combina con language. Ejercicios/dominio se comparten porque evalúan las mismas estructuras alemanas; calendarios de tarjetas son independientes.
-- Entrada importada: `id, de, lemma, es, en, category, gender?, plural?, forms?, note, noteEn, aliases[], frequencyRank|null, frequencyCount|null, source`. IDs hash de lema exacto+categoría; ausencia de forma no significa inexistencia lingüística. No se inventa CEFR.
-- `dictionaryMeta`: fuentes/versiones/hashes, licencia, recuentos y `frequency.surfaceRanks[normalisedSurface]=[rank,count]`.
-- `english`: mapas vocabulary/grammar/lessons/readings por ID original; contiene traducciones y respuestas inglesas. German examples intactos; algunas etiquetas mixtas `de` cambian solo su glosa.
-- `lessonSupport[unitId]`: overview/steps bilingües, appliedTables con title/columns/rows/note, primaryReadingId, readingSequence[], prerequisites[], readingGrammarIds[], additionalVocabIds[]. Celdas: alemán literal o `{es,en}`.
-- `readingSupport[readingId]`: minUnit, grammarIds[], intro bilingüe, teachingGlossary[] (`de,es,en,lemma` y marca contextual opcional).
-- `readingVocabulary[]`: glosas suplementarias de autor; ID estable, lema y ES/EN, categoría, alias, artículo cuando está revisado, procedencia original. Se incorporan como referencia; nombres propios no entran automáticamente en repaso.
-- `readingLemmas[readingId][lowercaseSurface]`: ID o lema esperado. `readingSurfaceLemmas` usa superficie exacta para distinguir Sie/sie y Deutsch/deutsch. No usar una entrada de preposición para un prefijo separable contextual.
-- `audio`: `{voice,locale,rate,synthetic,clips:{normalisedSurface:path},count,sourceScope}`. Clips fuera del almacenamiento de progreso; ruta local AAC/M4A.
-
-El campo visible `es` en una proyección EN contiene inglés por compatibilidad con los renderizadores; conservar la base bilingüe intacta y no exportar esa proyección como corpus español. El número de entradas tras la unión difiere del archivo importado, porque se conservan entradas didácticas y se evitan duplicados por lema/categoría.
+`window.DD.audio = { voice, maleVoice, rate, clips: { clave: 'audio/<hash>.m4a' }, count }`. Clave = texto visible normalizado (NFC, minúsculas, espacios simples); prefijos `letter:` (nombre de letra) y `m|` (voz masculina).
