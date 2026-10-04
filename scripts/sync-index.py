@@ -9,7 +9,7 @@ import re
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = ROOT / 'index.html'
-VERSION = '3.0'
+VERSION = '3.1'
 
 def tags(folder):
     path = ROOT / 'data' / folder
