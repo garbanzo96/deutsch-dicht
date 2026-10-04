@@ -1,0 +1,11 @@
+# Licencias y atribuciones
+
+- **Código, estilos y documentación original:** MIT, copyright 2026 garbanzo96. La licencia raíz no sustituye las licencias de los datos ni los avisos de terceros.
+- **Contenido didáctico original y traducciones propias en `data/`:** [CC BY-SA 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/). Atribución: Deutsch Dicht / garbanzo96. Texto legal: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- **`data/dictionary.js`:** adaptación bilingüe de WikDict (Karl Bartel), Wiktionary y DBnary, con frecuencia de FrequencyWords. CC BY-SA 4.0; los originales TEI de WikDict declaran CC BY-SA 3.0. Se conservan las atribuciones y cambios en [FUENTES-DICCIONARIO](../docs/FUENTES-DICCIONARIO.md).
+- **`data/frequency.js`:** adaptación de FrequencyWords, Hermit Dave, corpus alemán OpenSubtitles2018. Datos CC BY-SA 4.0. [Repositorio y licencias originales](https://github.com/hermitdave/FrequencyWords). Los rangos corresponden a formas en subtítulos, no a frecuencias universales por lema.
+- **FSRS en `js/core.js`:** port/adaptación JavaScript declarado por el proyecto de [py-fsrs](https://github.com/open-spaced-repetition/py-fsrs), Open Spaced Repetition, MIT. Aviso íntegro conservado en `py-fsrs-MIT.txt`. Esta publicación no certifica equivalencia completa del port.
+- **Textos históricos:** originales alemanes de Goethe, Heine, Kafka, Kant, Nietzsche, Schopenhauer, Wittgenstein (Tractatus, 1921/1922), Lichtenberg y Hegel; autores identificados en cada lectura. No se licencia de nuevo el texto histórico. Las traducciones y glosas del proyecto son propias, CC BY-SA 4.0. La etiqueta de dominio público se refiere a los originales, no a traducciones o ediciones críticas modernas. Véase [FUENTES-TEXTOS](../docs/FUENTES-TEXTOS.md).
+- **Audio público:** síntesis solicitada al navegador del lector, sin clips redistribuidos ni servicio TTS propio. Su disponibilidad y calidad dependen de las voces de-DE del dispositivo. Los clips privados de Anna/macOS se excluyen: la licencia macOS Sonoma, §2F, restringe su redistribución pública, incluso sin fines de lucro: https://www.apple.com/legal/sla/docs/macOSSonoma.pdf.
+
+Al redistribuir datos adaptados, conserva la atribución, identifica tus cambios y respeta compartir igual. No atribuyas a filósofos los textos didácticos originales.
