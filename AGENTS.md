@@ -1,17 +1,17 @@
-# Continuar Deutsch Dicht
+# Continuar Deutsch Dicht (v3)
 
-Lee `README.md` y `docs/CONTINUIDAD.md` antes de editar. El objetivo es alemán exacto y denso con términos explicados en español/inglés, uso local y progreso privado.
+Lee `README.md`, `docs/ARQUITECTURA.md`, `docs/ESQUEMA-DATOS.md` y `docs/CONTINUIDAD.md` antes de editar.
 
-- Conserva identificadores del corpus y respaldos. Cambios de estado necesitan compatibilidad/migración y pruebas.
-- Mantén independientes corpus, motor e interfaz. Las relaciones explícitas están en `data/connections.js`, `lesson-support.js` y `reading-support.js`; la app incorpora el vocabulario de la lectura principal.
-- Verifica género/plural, régimen, conjugaciones, variantes y distractores; documenta fuentes primarias para dudas.
-- No atribuyas textos originales a filósofos o investigadores. Registra edición y permiso de citas.
-- Ejecuta `node --test tests/*.test.js` y prueba en navegador los recorridos afectados.
-- Actualiza documentación y VALIDACION cuando cambia el corpus o comportamiento. No declares validaciones que no realizaste.
-- Preserva acceso estático sin dependencias externas y servidor limitado a 127.0.0.1. No publicar ni añadir cuentas/servicios como extensión rutinaria de un proyecto local.
+- **Datos**: unidades en `data/units/uNN.js` (léxico + `DD.unit`), gramática en `data/grammar/NN-*.js`, biblioteca en `data/readings/`. Tras añadir o quitar archivos de datos: `python3 scripts/sync-index.py`.
+- **IDs estables**: no renombres IDs de entradas, ejercicios (`uNN-MM`), lecturas ni temas; el progreso los usa. Un cambio de esquema del estado exige migración en `js/core.js` y pruebas.
+- **Léxico sin repeticiones**: cada lema se introduce una sola vez. Antes de añadir una palabra, comprueba que no exista; los homógrafos llevan `homonym: 1`. Coloca el vocabulario básico en la unidad donde aparece por primera vez.
+- **Lecturas graduadas**: toda lectura debe quedar con 100 % de palabras apoyadas (léxico conocido o glosa). Las de biblioteca declaran `after: 'uNN'`.
+- **Exactitud**: verifica género, plural, formas verbales, régimen y casos. No atribuyas textos originales a autores reales; las citas de dominio público deben ser literales y llevar obra y año.
+- **Validación**: `node scripts/check-content.js` (0 errores) y `node --test tests/*.test.js`. Prueba en el navegador en el puerto **8766** (`python3 scripts/serve.py --port 8766`); el 8765 guarda el progreso real del usuario y no se usa para pruebas destructivas.
+- **Audio**: tras cambiar textos, `python3 scripts/build-audio.py` (incremental). Mantén la identificación de audio sintético.
+- **Sin dependencias externas**, servidor solo en 127.0.0.1, sin publicar ni añadir cuentas o servicios.
+- Conserva las atribuciones de WikDict y FrequencyWords. Actualiza `docs/VALIDACION.md` con lo que realmente verificaste.
 
-- Mantén completos ambos idiomas, tablas aplicadas y lemas por contexto; verifica homógrafos, pronombres y prefijos separables. No confundir cobertura de formas con exactitud de acepciones.
-- Conserva las atribuciones/licencias de WikDict/FrequencyWords y la identidad sintética de los audios. Tras cambiar lecturas, reconstruye audio y comprueba reproducción real.
+## Publicación (esta copia)
+Esta carpeta es la copia pública para github.com/garbanzo96/deutsch-dicht y GitHub Pages. Lee docs/PUBLICACION.md. No subir clips de macOS (carpeta audio/), legacy/, secretos ni respaldos de progreso: el manifiesto público de audio está vacío a propósito y la app usa la voz alemana del navegador. Código MIT; contenido/datos CC BY-SA con avisos preservados (licenses/, credits.html). Los archivos de datos v2 que siguen en data/ y js/ no se cargan; son historial.
 
-## Publicación autorizada
-Esta copia se preparó para el repositorio público deutsch-dicht y GitHub Pages por petición expresa del usuario. Lee docs/PUBLICACION.md. No subir clips macOS, legacy, secretos o respaldos. Código MIT; contenido/datos CC BY-SA con avisos preservados. Ejecuta check-content y las pruebas actuales de tests/. La documentación v2 es histórica; manda el corpus actual y su validación.
